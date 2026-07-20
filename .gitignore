@@ -1,0 +1,31 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Secrets — NEVER commit
+.env
+
+# Local database (regenerated on startup)
+*.db
+
+# Generated replies
+outbox/
+
+# Node / frontend build
+node_modules/
+frontend/node_modules/
+frontend/dist/
+.vite/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Private prep notes — kept locally, NOT uploaded to GitHub
+PITCH.md
+VIDEO_SCRIPT.md
+TECHNICAL_WALKTHROUGH.md
+CODE_MAP.md
+DEMO_AND_SLIDES.md
+DEPLOY_RAILWAY.md

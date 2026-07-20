@@ -1,0 +1,16 @@
+source,sender,subject,message,true_type,true_urgency
+Email,priya.sharma@gmail.com,Double charged again,"I've been charged twice for my broadband this month and no one is helping me. This is really frustrating.",Complaint,High
+Web Form,anon-web-4821,Weekend hours,"What are your customer support opening hours on weekends?",General Enquiry,Low
+Email,raj.kumar@outlook.com,Plan upgrade,"I'd like to upgrade my current plan to the 1 Gbps fibre package please.",Service Request,Medium
+Shared Inbox,support-inbox,URGENT complaint,"This is the THIRD time my internet has gone down this week. I've had enough - I want to speak to a manager immediately or I'm cancelling.",Escalation,Critical
+Chat,live-chat-visitor,Chat message,"Oh great, no internet AGAIN. Wonderful service as always. Fix it.",Complaint,High
+Web Form,anon-web-5533,Pricing question,"How much does it cost to add a second router to my home network?",General Enquiry,Low
+Email,meera.nair@yahoo.com,Cancel subscription,"Please cancel my subscription effective at the end of this billing cycle.",Service Request,Medium
+Chat,live-chat-visitor,Slow connection,"My connection has been extremely slow for the past 3 days, videos won't load at all. Please help.",Complaint,High
+Web Form,anon-web-6120,Static IP,"Can you tell me which plans include a free static IP address?",General Enquiry,Low
+Email,sam.oliveira@gmail.com,New connection,"I need a new broadband connection installed at my new flat next week. What's the process?",Service Request,Medium
+Shared Inbox,support-inbox,Missed technician,"You promised a technician yesterday and nobody showed up. This is completely unacceptable - I've taken a day off work for nothing.",Escalation,Critical
+Web Form,anon-web-7004,Pause service,"Is there a way to pause my service while I'm travelling abroad for two months?",General Enquiry,Low
+Email,li.wei@hotmail.com,Bill query,"My latest bill is way higher than usual and I don't understand the extra charges. Can someone explain?",Complaint,Medium
+Chat,live-chat-visitor,Reschedule install,"I'd like to reschedule my installation appointment from Monday to Thursday if possible.",Service Request,Low
+Shared Inbox,support-inbox,Account question,"hmm not sure honestly, just wanted to check something about my account i think",General Enquiry,Low
