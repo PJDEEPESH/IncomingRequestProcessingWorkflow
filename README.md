@@ -11,6 +11,58 @@ own downstream actions and producing a customer reply plus an audit-log entry.
 
 ---
 
+## Architecture
+
+**The agentic pipeline** — two AI reasoning nodes (blue), a confidence-gated
+router, and five type-specific remediation branches:
+
+```mermaid
+flowchart TD
+    A([Incoming Request<br/>Email · Web Form · Shared Inbox · Chat]) --> B[AI Classify<br/>type · urgency · sentiment · confidence]
+    B --> C[AI Reason / Triage<br/>rationale + action plan]
+    C --> D{Confidence &ge; 60%?}
+    D -->|No — don't guess| H[Human Review<br/>+ approval queue]
+    D -->|Yes: route by type| E1[Complaint<br/>ack · escalate · log · remind]
+    D -->|Yes: route by type| E2[Enquiry<br/>topic · answer · send · resolve]
+    D -->|Yes: route by type| E3[Service Request<br/>extract · route · confirm · SLA]
+    D -->|Yes: route by type| E4[Escalation<br/>flag · urgent ack · supervisor · pause]
+    E1 --> O([Output + Reply written to /outbox<br/>+ Case Log SQLite + Human Approval])
+    E2 --> O
+    E3 --> O
+    E4 --> O
+    H --> O
+
+    classDef ai fill:#cfe0ff,stroke:#0b5fd6,stroke-width:2px,color:#0a1a33;
+    classDef gate fill:#fff3cd,stroke:#d39e00,color:#0a1a33;
+    classDef io fill:#e8eefc,stroke:#5b6472,color:#0a1a33;
+    class B,C ai;
+    class D gate;
+    class A,O io;
+```
+
+**System design** — a three-layer stack, deployed as a single service on Railway:
+
+```mermaid
+flowchart LR
+    UI[React + TypeScript<br/>Vite UI] --> API[FastAPI<br/>web server]
+    API --> LG[LangGraph<br/>agentic pipeline]
+    LG --> AI[OpenAI<br/>gpt-4o-mini]
+    LG --> DB[(SQLite<br/>case log)]
+
+    classDef box fill:#f2f5fa,stroke:#0b5fd6,color:#0a1a33;
+    class UI,API,LG,AI,DB box;
+```
+
+> **Is it agentic or hard-coded?** Two nodes are **real AI calls** — *Classify*
+> (decides type/urgency/sentiment) and *Reason* (writes the action plan). The
+> AI's output **drives the routing**, and the AI **writes every reply**. The
+> steps inside each branch are predefined workflows **on purpose** — a business
+> process must be reliable and auditable, not random. So it's an
+> **AI-orchestrated agentic workflow**, not an if/else tree and not an
+> unpredictable autonomous agent.
+
+---
+
 ## 1. What it does (end to end)
 
 ```
